@@ -11,7 +11,7 @@
         <button type="button" class="btn btn-xs btn-info">
             {{post.author.username}}
         </button>
-        <p>{{psot.text|linebreaksbr}}</p>
+        <p>{{post.text|linebreaksbr}}</p>
         <p class="text-right">
             <a href="{% url 'photo:photo_detail' pk=post.id %}" class="btn btn-xs btn-success">댓글달기</a>
         </p>
