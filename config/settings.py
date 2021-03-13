@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'photo',
     'accounts',
+    'disqus',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +122,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
+
+DISQUS_WEBSITE_SHORTNAME = 'dstagram-estry'
+SITE_ID = 1
