@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView
 
@@ -26,6 +27,18 @@ class PhotoUploadView(LoginRequiredMixin, CreateView):
             return redirect('/')
         else:
             return self.render_to_response({'form': form})
+
+
+@login_required
+def deleteView(request, pk):
+    photo = Photo.objects.get(id=pk)
+    if photo.author == request.user:
+        photo.delete()
+        messages.success(request, "삭제되었습니다.")
+        return redirect('/')
+    else:
+        messages.error(request, "본인 게시글이 아닙니다.")
+        return redirect('/detail/' + str(pk))
 
 
 class PhotoDeleteView(LoginRequiredMixin, DeleteView):
